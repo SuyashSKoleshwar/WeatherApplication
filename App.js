@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, View, Text, TextInput, Image } from 'react-native';
+import { Button, View, Text, TextInput, Image,ToastAndroid } from 'react-native';
 import { NavigationContainer, TabRouter } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -17,18 +17,21 @@ const EnterCountry = ({ navigation }) => {
     fetch('https://restcountries.com/v3.1/name/' + value + '?fullText=true')
       .then((response) => response.json())
       .then((json) => {
+        if(json.message==="Not Found"){          
+            ToastAndroid.show("Please enter correct Country name !",ToastAndroid.SHORT);         
+        }
         // console.log("CAPITAL :: ", json[0].capital[0]);//CAPITAL
         // console.log("LAT :: ", json[0].latlng[0]);//LAT
         // console.log("LNG :: ", json[0].latlng[1]);//LNG
         // console.log("POPULATION :: ", json[0].population);//POPULATION
         // console.log("FLAG :: ", json[0].flags.png);//FLAG
-        var param = {};
+       else { var param = {};
         param.capital = json[0].capital[0];
         param.lat = json[0].latlng[0];
         param.lng = json[0].latlng[1];
         param.popu = json[0].population;
         param.flag = json[0].flags.png;
-        navigation.navigate('CountryDetails', param);
+        navigation.navigate('CountryDetails', param);}
       })
       .catch((error) => { console.error(error); });
   }
