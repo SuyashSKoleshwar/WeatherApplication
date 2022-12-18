@@ -7,7 +7,7 @@ const EnterCountry = ({ navigation }) => {
   const [fill, onFill] = React.useState(true);
 
   function onFilled(val) {
-    ; if (val == "") { onFill(true) }
+    if (val == "") { onFill(true) }
     else onFill(false)
     }
 
