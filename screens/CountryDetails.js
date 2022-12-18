@@ -21,6 +21,8 @@ function CountryDetails({ navigation, route }) {
       }
 
 
+      
+
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: "space-around",flexDirection:"column",backgroundColor:"#e1e1e1" }}>
         <View style={{flex:0.2}}>
